@@ -1,7 +1,7 @@
 // @see https://docs.nestjs.com/openapi/types-and-parameters
 
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { RegistrationStatus } from 'src/domain/participant/value-object/registration-status';
 
 export class GetParticipantsFilterRequest {
@@ -11,13 +11,16 @@ export class GetParticipantsFilterRequest {
   })
   @IsOptional()
   @IsNumber()
+  @IsNotEmpty()
   page: number;
 
   @ApiPropertyOptional({
     description: '課題を識別するための唯一のID',
+    minItems: 1,
   })
   @IsOptional()
   @IsNumber()
+  @IsNotEmpty()
   issueIds: number[];
 
   @ApiPropertyOptional({
@@ -26,5 +29,6 @@ export class GetParticipantsFilterRequest {
   })
   @IsOptional()
   @IsString()
+  @IsNotEmpty()
   progressionStatus: string;
 }

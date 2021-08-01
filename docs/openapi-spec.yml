@@ -169,6 +169,7 @@ components:
       properties:
         participants:
           description: 参加者の一覧（1回で最大10人の情報を取得）
+          maxItems: 10
           type: array
           items:
             $ref: '#/components/schemas/Participants'
@@ -192,6 +193,9 @@ components:
         registrationStatus:
           type: string
           description: 参加者の在籍ステータス（在籍中/休会中/退会済み）
+          enum:
+            - 在籍中
+            - 休会中
       required:
         - registrationStatus
     PostIssuesRequest:

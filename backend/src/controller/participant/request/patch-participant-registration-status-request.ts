@@ -7,6 +7,11 @@ import { RegistrationStatus } from 'src/domain/participant/value-object/registra
 export class PatchParticipantRegistrationStatusRequest {
   @ApiProperty({
     description: '参加者の在籍ステータス（在籍中/休会中/退会済み）',
+    enum: {
+      enroll: '在籍中',
+      recess: '休会中',
+      withdrawal: '退会済み',
+    },
   })
   @IsNotEmpty()
   @IsString()

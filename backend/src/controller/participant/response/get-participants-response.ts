@@ -5,6 +5,7 @@ export class GetParticipantsResponse {
   @ApiProperty({
     description: '参加者の一覧（1回で最大10人の情報を取得）',
     type: () => [Participants],
+    maxItems: 10,
   })
   participants: Participants[];
 
