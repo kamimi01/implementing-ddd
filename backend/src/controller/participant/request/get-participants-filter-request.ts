@@ -2,6 +2,7 @@
 
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { ProgressionStatus } from 'src/domain/issue/value-object/progression-status';
 import { RegistrationStatus } from 'src/domain/participant/value-object/registration-status';
 
 export class GetParticipantsFilterRequest {
@@ -26,9 +27,16 @@ export class GetParticipantsFilterRequest {
   @ApiPropertyOptional({
     description:
       '参加者ごとの課題の進捗ステータス（未着手/着手中/レビュー待ち/完了）',
+    enum: {
+      notStarted: 'notStarted',
+      working: 'working',
+      waitingForReview: 'waitingForReview',
+      completed: 'completed',
+    },
+    enumName: 'ProgressionStatus',
   })
   @IsOptional()
   @IsString()
   @IsNotEmpty()
-  progressionStatus: string;
+  progressionStatus: ProgressionStatus;
 }

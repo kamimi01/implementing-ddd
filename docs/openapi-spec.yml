@@ -26,7 +26,7 @@ paths:
           in: query
           description: 参加者ごとの課題の進捗ステータス（未着手/着手中/レビュー待ち/完了）
           schema:
-            type: string
+            $ref: '#/components/schemas/ProgressionStatus'
       responses:
         '200':
           description: 取得成功
@@ -144,6 +144,19 @@ servers:
   - url: http://localhost/api/v1
 components:
   schemas:
+    ProgressionStatus:
+      type: string
+      enum:
+        - notStarted
+        - working
+        - waitingForReview
+        - completed
+    RegistrationStatus:
+      type: string
+      enum:
+        - enroll
+        - recess
+        - withdrawal
     Participants:
       type: object
       properties:
@@ -157,8 +170,8 @@ components:
           type: string
           description: 参加者のメールアドレス
         registrationStatus:
-          type: string
           description: 参加者の在籍ステータス（在籍中/休会中/退会済み）
+          $ref: '#/components/schemas/RegistrationStatus'
       required:
         - id
         - name
@@ -191,11 +204,8 @@ components:
       type: object
       properties:
         registrationStatus:
-          type: string
           description: 参加者の在籍ステータス（在籍中/休会中/退会済み）
-          enum:
-            - 在籍中
-            - 休会中
+          $ref: '#/components/schemas/RegistrationStatus'
       required:
         - registrationStatus
     PostIssuesRequest:
@@ -216,8 +226,8 @@ components:
           type: string
           description: 課題の名前
         progressionStatus:
-          type: string
           description: 参加者ごとの課題の進捗ステータス（未着手/着手中/レビュー待ち/完了）
+          $ref: '#/components/schemas/ProgressionStatus'
       required:
         - id
         - name
@@ -226,7 +236,7 @@ components:
       type: object
       properties:
         progressionStatus:
-          type: string
           description: 参加者ごとの課題の進捗ステータス（未着手/着手中/レビュー待ち/完了）
+          $ref: '#/components/schemas/ProgressionStatus'
       required:
         - progressionStatus

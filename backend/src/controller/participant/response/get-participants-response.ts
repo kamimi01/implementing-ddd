@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { RegistrationStatus } from 'src/domain/participant/value-object/registration-status';
 // import { SomeDataDTO } from 'src/app/sample/query-service-interface/some-data-qs'
 
 export class GetParticipantsResponse {
@@ -24,7 +25,13 @@ export class Participants {
 
   @ApiProperty({
     description: '参加者の在籍ステータス（在籍中/休会中/退会済み）',
+    enum: {
+      enroll: 'enroll',
+      recess: 'recess',
+      withdrawal: 'withdrawal',
+    },
+    enumName: 'RegistrationStatus',
   })
   // TODO: データ型はUnionで定義した型に変更する
-  registrationStatus: string;
+  registrationStatus: RegistrationStatus;
 }
