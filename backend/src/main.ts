@@ -7,17 +7,22 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(new ValidationPipe());
 
   const options = new DocumentBuilder()
     .setTitle('Praha ChallengeをDDDで実装する')
     .setDescription('Praha ChallengeをDDDで実装する')
     .setVersion('1.0')
+    .addServer('http://localhost')
+    .setBasePath('/api/v1')
     .build();
   const document = SwaggerModule.createDocument(app, options);
 
   // TODO: OpenAPIのyamlファイル出力はyarn start:dev以外のコマンドで実行できるようにしたい
-  fs.writeFileSync('/workspaces/Node_Projects/implementing-domain-driven-design/docs/openapi-spec.yml', dump(document, {}));
+  fs.writeFileSync(
+    '/workspaces/Node_Projects/implementing-domain-driven-design/docs/openapi-spec.yml',
+    dump(document, {}),
+  );
 
   SwaggerModule.setup('api', app, document);
 

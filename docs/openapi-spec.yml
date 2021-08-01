@@ -11,6 +11,7 @@ paths:
           in: query
           description: 取得するページ番号
           schema:
+            minimum: 1
             type: number
         - name: issueIds
           required: false
@@ -139,7 +140,8 @@ info:
   version: '1.0'
   contact: {}
 tags: []
-servers: []
+servers:
+  - url: http://localhost
 components:
   schemas:
     Participants:

@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AppService } from '../../app.service';
 import { GetParticipantsFilterRequest } from './request/get-participants-filter-request';
 import { PatchParticipantRegistrationStatusRequest } from './request/patch-participant-registration-status-request';
@@ -44,8 +44,7 @@ export class ParticipantController {
     summary: '参加者の新規追加',
     description: '- 参加者の新規追加を行う',
   })
-  @ApiResponse({
-    status: 201,
+  @ApiCreatedResponse({
     description: '登録成功のため、登録された参加者の情報を返却する',
     type: Participants,
   })
@@ -63,7 +62,7 @@ export class ParticipantController {
     summary: '参加者ごとの在籍ステータスの更新',
     description: '- 参加者ごとの在籍ステータスの更新を行う',
   })
-  @ApiResponse({
+  @ApiOkResponse({
     status: 200,
     description: '更新成功のため、更新された参加者の情報を返却する',
     type: Participants,
