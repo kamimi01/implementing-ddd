@@ -7,11 +7,21 @@ paths:
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetParticipantsResponse'
       tags: &ref_0
         - 参加者
     post:
       operationId: ParticipantController_createParticipants
       parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostParticipantsRequest'
       responses:
         '201':
           description: ''
@@ -20,6 +30,12 @@ paths:
     patch:
       operationId: ParticipantController_updateParticipantRegistrationStatus
       parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchParticipantRegistrationStatusRequest'
       responses:
         '200':
           description: ''
@@ -46,14 +62,27 @@ paths:
     get:
       operationId: IssueController_createIssues
       parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostIssuesRequest'
       responses:
         '200':
           description: ''
       tags: &ref_1
         - 課題
+  /issues/{issue_id}/participants/{participant_id}/progression-status:
     patch:
       operationId: IssueController_updateIssueProgressionStatus
       parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchIssueProgressionStatusRequest'
       responses:
         '200':
           description: ''
@@ -66,4 +95,60 @@ info:
 tags: []
 servers: []
 components:
-  schemas: {}
+  schemas:
+    Participants:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        registrationStatus:
+          type: string
+      required:
+        - id
+        - name
+        - email
+        - registrationStatus
+    GetParticipantsResponse:
+      type: object
+      properties:
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participants'
+      required:
+        - participants
+    PostParticipantsRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+      required:
+        - name
+        - email
+    PatchParticipantRegistrationStatusRequest:
+      type: object
+      properties:
+        registrationStatus:
+          type: string
+      required:
+        - registrationStatus
+    PostIssuesRequest:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+    PatchIssueProgressionStatusRequest:
+      type: object
+      properties:
+        progressionStatus:
+          type: string
+      required:
+        - progressionStatus
