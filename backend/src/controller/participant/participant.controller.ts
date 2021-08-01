@@ -17,6 +17,7 @@ import {
 import { AppService } from '../../app.service';
 import { GetParticipantsFilterRequest } from './request/get-participants-filter-request';
 import { PatchParticipantRegistrationStatusRequest } from './request/patch-participant-registration-status-request';
+import { PatchParticipantRegistrationStatusRequestPath } from './request/patch-participant-registration-status-request-path';
 import { PostParticipantsRequest } from './request/post-participants.request';
 import {
   GetParticipantsResponse,
@@ -71,7 +72,7 @@ export class ParticipantController {
   }
 
   // 参加者の在籍ステータスの更新
-  @Patch('/:participant_id/registration-status')
+  @Patch('/:participantId/registration-status')
   @ApiOperation({
     summary: '参加者ごとの在籍ステータスの更新',
     description: '- 参加者ごとの在籍ステータスの更新を行う',
@@ -82,7 +83,8 @@ export class ParticipantController {
     type: Participants,
   })
   updateParticipantRegistrationStatus(
-    @Param('participant_id') participantId: string,
+    @Param()
+    patchParticipantRegistrationStatusRequestPath: PatchParticipantRegistrationStatusRequestPath,
     // ステータスしか更新しないのに、Dtoクラスを作成するのはoverkillか？
     @Body()
     PatchParticipantRegistrationStatusDto: PatchParticipantRegistrationStatusRequest,

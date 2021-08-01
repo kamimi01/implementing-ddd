@@ -60,16 +60,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/Participants'
       tags: *ref_0
-  /participants/{participant_id}/registration-status:
+  /participants/{participantId}/registration-status:
     patch:
       operationId: ParticipantController_updateParticipantRegistrationStatus
       summary: 参加者ごとの在籍ステータスの更新
       description: '- 参加者ごとの在籍ステータスの更新を行う'
       parameters:
-        - name: participant_id
+        - name: participantId
           required: true
           in: path
+          description: 参加者を識別するための唯一のID
+          example: ae6b59c0-abff-4993-b2f5-76ba28e74c58
           schema:
+            format: uuid
             type: string
       requestBody:
         required: true
@@ -124,21 +127,27 @@ paths:
                 $ref: '#/components/schemas/Issues'
       tags: &ref_1
         - 課題
-  /issues/{issue_id}/participants/{participant_id}/progression-status:
+  /issues/{issueId}/participants/{participantId}/progression-status:
     patch:
       operationId: IssueController_updateIssueProgressionStatus
       summary: 課題の進捗ステータスを参加者ごとに更新
       description: '- 参加者ごとの課題の進捗ステータスの更新を行う'
       parameters:
-        - name: issue_id
+        - name: issueId
           required: true
           in: path
+          description: 課題を識別するための唯一のID
+          example: 354efbbe-3738-4dfe-bc93-2615e90825b4
           schema:
+            format: uuid
             type: string
-        - name: participant_id
+        - name: participantId
           required: true
           in: path
+          description: 参加者を識別するための唯一のID
+          example: ae6b59c0-abff-4993-b2f5-76ba28e74c58
           schema:
+            format: uuid
             type: string
       requestBody:
         required: true

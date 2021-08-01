@@ -7,6 +7,7 @@ import {
 } from '@nestjs/swagger';
 import { AppService } from '../../app.service';
 import { PatchIssueProgressionStatusRequest } from './request/patch-issue-progression-progression-status-request';
+import { PatchIssueProgressionStatusRequestPath } from './request/patch-issue-progression-status-request-path';
 import { PostIssuesRequest } from './request/post-issues-request';
 import { Issues } from './response/get-issues-response';
 
@@ -32,7 +33,7 @@ export class IssueController {
   }
 
   // 課題の進捗ステータスの更新
-  @Patch('/:issue_id/participants/:participant_id/progression-status')
+  @Patch('/:issueId/participants/:participantId/progression-status')
   @ApiOperation({
     summary: '課題の進捗ステータスを参加者ごとに更新',
     description: '- 参加者ごとの課題の進捗ステータスの更新を行う',
@@ -42,8 +43,8 @@ export class IssueController {
     type: Issues,
   })
   updateIssueProgressionStatus(
-    @Param('issue_id') issueId: string,
-    @Param('participant_id') participantId: string,
+    @Param()
+    patchIssueProgressionStatusRequestPath: PatchIssueProgressionStatusRequestPath,
     @Body() patchIssueProgressionStatusDto: PatchIssueProgressionStatusRequest,
   ): Issues {
     const response = new Issues();
