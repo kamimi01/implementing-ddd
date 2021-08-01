@@ -122,12 +122,16 @@ components:
       properties:
         id:
           type: string
+          description: 参加者を識別するための唯一のID
         name:
           type: string
+          description: 参加者の名前
         email:
           type: string
+          description: 参加者のメールアドレス
         registrationStatus:
           type: string
+          description: 参加者の在籍ステータス（在籍中/休会中/退会済み）
       required:
         - id
         - name
@@ -147,8 +151,10 @@ components:
       properties:
         name:
           type: string
+          description: 参加者の名前
         email:
           type: string
+          description: 参加者のメールアドレス
       required:
         - name
         - email
@@ -157,6 +163,7 @@ components:
       properties:
         registrationStatus:
           type: string
+          description: 参加者の在籍ステータス（在籍中/休会中/退会済み）
       required:
         - registrationStatus
     PostIssuesRequest:
@@ -164,6 +171,7 @@ components:
       properties:
         name:
           type: string
+          description: 課題の名前
       required:
         - name
     Issues:
@@ -171,10 +179,13 @@ components:
       properties:
         id:
           type: string
+          description: 課題を識別するための唯一のID
         name:
           type: string
+          description: 課題の名前
         progressionStatus:
           type: string
+          description: 参加者ごとの課題の進捗ステータス（未着手/着手中/レビュー待ち/完了）
       required:
         - id
         - name
@@ -184,5 +195,6 @@ components:
       properties:
         progressionStatus:
           type: string
+          description: 参加者ごとの課題の進捗ステータス（未着手/着手中/レビュー待ち/完了）
       required:
         - progressionStatus

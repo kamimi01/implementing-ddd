@@ -1,7 +1,9 @@
+// TODO: クラスを使った書き方に修正したい
 const RegistrationStatus = {
-  Enroll: 0,
-  Recess: 1,
-  Withdrawal: 2,
+  Enroll: 'enroll',
+  Recess: 'recess',
+  Withdrawal: 'withdrawal',
 } as const;
 
-export type RegistrationStatus = typeof RegistrationStatus[keyof typeof RegistrationStatus];
+export type RegistrationStatus =
+  typeof RegistrationStatus[keyof typeof RegistrationStatus];

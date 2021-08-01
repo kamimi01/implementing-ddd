@@ -9,16 +9,18 @@ export class GetParticipantsResponse {
 }
 
 export class Participants {
-  @ApiProperty()
+  @ApiProperty({ description: '参加者を識別するための唯一のID' })
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({ description: '参加者の名前' })
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({ description: '参加者のメールアドレス' })
   email: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: '参加者の在籍ステータス（在籍中/休会中/退会済み）',
+  })
   // TODO: データ型はUnionで定義した型に変更する
   registrationStatus: string;
 }
