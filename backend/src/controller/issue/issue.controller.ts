@@ -10,7 +10,7 @@ export class IssueController {
   constructor(private readonly appService: AppService) {}
 
   // 課題の新規追加
-  @Get()
+  @Post()
   createIssues(@Body() postIssuesDto: PostIssuesRequest): string {
     return '';
   }
