@@ -11,11 +11,10 @@ async function bootstrap() {
     .setTitle('Praha ChallengeをDDDで実装する')
     .setDescription('Praha ChallengeをDDDで実装する')
     .setVersion('1.0')
-    .addTag('example')
     .build();
   const document = SwaggerModule.createDocument(app, options);
 
-  // YAML
+  // TODO: OpenAPIのyamlファイル出力はyarn start:dev以外のコマンドで実行できるようにしたい
   fs.writeFileSync('/workspaces/Node_Projects/implementing-domain-driven-design/docs/openapi-spec.yml', dump(document, {}));
 
   SwaggerModule.setup('api', app, document);

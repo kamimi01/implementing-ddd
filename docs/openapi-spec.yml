@@ -2,7 +2,7 @@ openapi: 3.0.0
 paths:
   /participants:
     get:
-      operationId: AppController_getParticipants
+      operationId: ParticipantController_getParticipants
       parameters: []
       responses:
         '200':
@@ -10,7 +10,7 @@ paths:
       tags: &ref_0
         - 参加者
     post:
-      operationId: AppController_createParticipants
+      operationId: ParticipantController_createParticipants
       parameters: []
       responses:
         '201':
@@ -18,20 +18,52 @@ paths:
       tags: *ref_0
   /participants/{participant_id}/registration-status:
     patch:
-      operationId: AppController_updateParticipantRegistrationStatus
+      operationId: ParticipantController_updateParticipantRegistrationStatus
       parameters: []
       responses:
         '200':
           description: ''
       tags: *ref_0
+  /teams:
+    get:
+      operationId: TeamController_getPairs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - チーム
+  /pairs:
+    get:
+      operationId: PairController_getPairs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - ペア
+  /issues:
+    get:
+      operationId: IssueController_createIssues
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags: &ref_1
+        - 課題
+    patch:
+      operationId: IssueController_updateIssueProgressionStatus
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags: *ref_1
 info:
   title: Praha ChallengeをDDDで実装する
   description: Praha ChallengeをDDDで実装する
   version: '1.0'
   contact: {}
-tags:
-  - name: example
-    description: ''
+tags: []
 servers: []
 components:
   schemas: {}

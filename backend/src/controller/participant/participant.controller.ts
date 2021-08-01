@@ -1,10 +1,10 @@
 import { Controller, Get, Patch, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AppService } from './app.service';
+import { AppService } from '../../app.service';
 
 @ApiTags('参加者')
 @Controller('participants')
-export class AppController {
+export class ParticipantController {
   constructor(private readonly appService: AppService) {}
 
   // 参加者の取得（一覧取得または条件付き取得）
@@ -30,17 +30,4 @@ export class AppController {
   updateParticipantRegistrationStatus(): string {
     return this.appService.updateParticipantRegistrationStatus();
   }
-
-  // これ以降は別クラスに分割する
-  // チームの一覧取得
-
-  // チームの更新
-
-  // ペアの一覧取得
-
-  // ペアの更新
-
-  // 課題の新規追加
-
-  // 課題の更新
 }
