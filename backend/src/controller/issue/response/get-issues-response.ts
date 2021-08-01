@@ -2,10 +2,17 @@ import { ApiProperty } from '@nestjs/swagger';
 import { ProgressionStatus } from 'src/domain/issue/value-object/progression-status';
 
 export class Issues {
-  @ApiProperty({ description: '課題を識別するための唯一のID' })
+  @ApiProperty({
+    description: '課題を識別するための唯一のID',
+    format: 'uuid',
+    example: '354efbbe-3738-4dfe-bc93-2615e90825b4',
+  })
   id: string;
 
-  @ApiProperty({ description: '課題の名前' })
+  @ApiProperty({
+    description: '課題の名前',
+    example: 'プラハチャレンジをDDDで実装する',
+  })
   name: string;
 
   @ApiProperty({
@@ -18,6 +25,7 @@ export class Issues {
       completed: 'completed',
     },
     enumName: 'ProgressionStatus',
+    example: 'working',
   })
   progressionStatus: ProgressionStatus;
 }

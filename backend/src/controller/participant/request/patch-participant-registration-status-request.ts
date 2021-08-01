@@ -13,6 +13,7 @@ export class PatchParticipantRegistrationStatusRequest {
       withdrawal: 'withdrawal',
     },
     enumName: 'RegistrationStatus',
+    example: 'enroll',
   })
   @IsNotEmpty()
   @IsString()

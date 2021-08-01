@@ -10,6 +10,7 @@ paths:
           required: false
           in: query
           description: 取得するページ番号
+          example: 1
           schema:
             minimum: 1
             type: number
@@ -17,6 +18,9 @@ paths:
           required: false
           in: query
           description: 課題を識別するための唯一のID
+          example:
+            - 5
+            - 12
           schema:
             type: array
             items:
@@ -25,6 +29,7 @@ paths:
           required: false
           in: query
           description: 参加者ごとの課題の進捗ステータス（未着手/着手中/レビュー待ち/完了）
+          example: working
           schema:
             $ref: '#/components/schemas/ProgressionStatus'
       responses:
@@ -163,14 +168,20 @@ components:
         id:
           type: string
           description: 参加者を識別するための唯一のID
+          format: uuid
+          example: ae6b59c0-abff-4993-b2f5-76ba28e74c58
         name:
           type: string
           description: 参加者の名前
+          example: 松本花子
         email:
           type: string
           description: 参加者のメールアドレス
+          format: email
+          example: hoge@mail.com
         registrationStatus:
           description: 参加者の在籍ステータス（在籍中/休会中/退会済み）
+          example: recess
           $ref: '#/components/schemas/RegistrationStatus'
       required:
         - id
@@ -194,9 +205,13 @@ components:
         name:
           type: string
           description: 参加者の名前
+          example: 松本花子
+          minLength: 1
         email:
           type: string
           description: 参加者のメールアドレス
+          format: email
+          example: hoge@mail.com
       required:
         - name
         - email
@@ -205,6 +220,7 @@ components:
       properties:
         registrationStatus:
           description: 参加者の在籍ステータス（在籍中/休会中/退会済み）
+          example: enroll
           $ref: '#/components/schemas/RegistrationStatus'
       required:
         - registrationStatus
@@ -214,6 +230,7 @@ components:
         name:
           type: string
           description: 課題の名前
+          example: プラハチャレンジをDDDで実装する
       required:
         - name
     Issues:
@@ -222,11 +239,15 @@ components:
         id:
           type: string
           description: 課題を識別するための唯一のID
+          format: uuid
+          example: 354efbbe-3738-4dfe-bc93-2615e90825b4
         name:
           type: string
           description: 課題の名前
+          example: プラハチャレンジをDDDで実装する
         progressionStatus:
           description: 参加者ごとの課題の進捗ステータス（未着手/着手中/レビュー待ち/完了）
+          example: working
           $ref: '#/components/schemas/ProgressionStatus'
       required:
         - id
@@ -237,6 +258,7 @@ components:
       properties:
         progressionStatus:
           description: 参加者ごとの課題の進捗ステータス（未着手/着手中/レビュー待ち/完了）
+          example: waitingForReview
           $ref: '#/components/schemas/ProgressionStatus'
       required:
         - progressionStatus

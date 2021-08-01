@@ -14,13 +14,21 @@ export class GetParticipantsResponse {
 }
 
 export class Participants {
-  @ApiProperty({ description: '参加者を識別するための唯一のID' })
+  @ApiProperty({
+    description: '参加者を識別するための唯一のID',
+    format: 'uuid',
+    example: 'ae6b59c0-abff-4993-b2f5-76ba28e74c58',
+  })
   id: string;
 
-  @ApiProperty({ description: '参加者の名前' })
+  @ApiProperty({ description: '参加者の名前', example: '松本花子' })
   name: string;
 
-  @ApiProperty({ description: '参加者のメールアドレス' })
+  @ApiProperty({
+    description: '参加者のメールアドレス',
+    format: 'email',
+    example: 'hoge@mail.com',
+  })
   email: string;
 
   @ApiProperty({
@@ -31,6 +39,7 @@ export class Participants {
       withdrawal: 'withdrawal',
     },
     enumName: 'RegistrationStatus',
+    example: 'recess',
   })
   // TODO: データ型はUnionで定義した型に変更する
   registrationStatus: RegistrationStatus;

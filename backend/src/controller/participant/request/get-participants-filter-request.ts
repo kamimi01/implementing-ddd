@@ -9,6 +9,7 @@ export class GetParticipantsFilterRequest {
   @ApiPropertyOptional({
     description: '取得するページ番号',
     minimum: 1,
+    example: 1,
   })
   @IsOptional()
   @IsNumber()
@@ -18,6 +19,7 @@ export class GetParticipantsFilterRequest {
   @ApiPropertyOptional({
     description: '課題を識別するための唯一のID',
     minItems: 1,
+    example: [5, 12],
   })
   @IsOptional()
   @IsNumber()
@@ -34,6 +36,7 @@ export class GetParticipantsFilterRequest {
       completed: 'completed',
     },
     enumName: 'ProgressionStatus',
+    example: 'working',
   })
   @IsOptional()
   @IsString()

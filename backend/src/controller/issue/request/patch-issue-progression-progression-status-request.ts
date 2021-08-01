@@ -15,6 +15,7 @@ export class PatchIssueProgressionStatusRequest {
       completed: 'completed',
     },
     enumName: 'ProgressionStatus',
+    example: 'waitingForReview',
   })
   @IsNotEmpty()
   @IsString()
