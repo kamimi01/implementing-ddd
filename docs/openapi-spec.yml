@@ -1,0 +1,37 @@
+openapi: 3.0.0
+paths:
+  /participants:
+    get:
+      operationId: AppController_getParticipants
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags: &ref_0
+        - 参加者
+    post:
+      operationId: AppController_createParticipants
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags: *ref_0
+  /participants/{participant_id}/registration-status:
+    patch:
+      operationId: AppController_updateParticipantRegistrationStatus
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags: *ref_0
+info:
+  title: Praha ChallengeをDDDで実装する
+  description: Praha ChallengeをDDDで実装する
+  version: '1.0'
+  contact: {}
+tags:
+  - name: example
+    description: ''
+servers: []
+components:
+  schemas: {}
