@@ -1,5 +1,19 @@
-import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
+import {
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { AppService } from '../../app.service';
 import { GetParticipantsFilterRequest } from './request/get-participants-filter-request';
 import { PatchParticipantRegistrationStatusRequest } from './request/patch-participant-registration-status-request';
@@ -68,6 +82,7 @@ export class ParticipantController {
     type: Participants,
   })
   updateParticipantRegistrationStatus(
+    @Param('participant_id') participantId: string,
     // ステータスしか更新しないのに、Dtoクラスを作成するのはoverkillか？
     @Body()
     PatchParticipantRegistrationStatusDto: PatchParticipantRegistrationStatusRequest,

@@ -65,7 +65,12 @@ paths:
       operationId: ParticipantController_updateParticipantRegistrationStatus
       summary: 参加者ごとの在籍ステータスの更新
       description: '- 参加者ごとの在籍ステータスの更新を行う'
-      parameters: []
+      parameters:
+        - name: participant_id
+          required: true
+          in: path
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -124,7 +129,17 @@ paths:
       operationId: IssueController_updateIssueProgressionStatus
       summary: 課題の進捗ステータスを参加者ごとに更新
       description: '- 参加者ごとの課題の進捗ステータスの更新を行う'
-      parameters: []
+      parameters:
+        - name: issue_id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: participant_id
+          required: true
+          in: path
+          schema:
+            type: string
       requestBody:
         required: true
         content:

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import {
   ApiCreatedResponse,
   ApiOkResponse,
@@ -42,6 +42,8 @@ export class IssueController {
     type: Issues,
   })
   updateIssueProgressionStatus(
+    @Param('issue_id') issueId: string,
+    @Param('participant_id') participantId: string,
     @Body() patchIssueProgressionStatusDto: PatchIssueProgressionStatusRequest,
   ): Issues {
     const response = new Issues();
