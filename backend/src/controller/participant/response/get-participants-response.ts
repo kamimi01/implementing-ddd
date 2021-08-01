@@ -2,7 +2,10 @@ import { ApiProperty } from '@nestjs/swagger';
 // import { SomeDataDTO } from 'src/app/sample/query-service-interface/some-data-qs'
 
 export class GetParticipantsResponse {
-  @ApiProperty({ type: () => [Participants] })
+  @ApiProperty({
+    description: '参加者の一覧（1回で最大10人の情報を取得）',
+    type: () => [Participants],
+  })
   participants: Participants[];
 
   public constructor() {}

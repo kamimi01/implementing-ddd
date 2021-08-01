@@ -4,7 +4,28 @@ paths:
     get:
       operationId: ParticipantController_getParticipants
       summary: 参加者の一覧の取得または条件付き取得
-      parameters: []
+      description: '- パラメータが存在しない場合は、条件なしで参加者の一覧を取得する'
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: 取得するページ番号
+          schema:
+            type: number
+        - name: issueIds
+          required: false
+          in: query
+          description: 課題を識別するための唯一のID
+          schema:
+            type: array
+            items:
+              type: string
+        - name: progressionStatus
+          required: false
+          in: query
+          description: 参加者ごとの課題の進捗ステータス（未着手/着手中/レビュー待ち/完了）
+          schema:
+            type: string
       responses:
         '200':
           description: 取得成功
@@ -17,6 +38,7 @@ paths:
     post:
       operationId: ParticipantController_createParticipants
       summary: 参加者の新規追加
+      description: '- 参加者の新規追加を行う'
       parameters: []
       requestBody:
         required: true
@@ -36,6 +58,7 @@ paths:
     patch:
       operationId: ParticipantController_updateParticipantRegistrationStatus
       summary: 参加者ごとの在籍ステータスの更新
+      description: '- 参加者ごとの在籍ステータスの更新を行う'
       parameters: []
       requestBody:
         required: true
@@ -73,6 +96,7 @@ paths:
     post:
       operationId: IssueController_createIssues
       summary: 課題の新規追加
+      description: '- 課題の新規追加を行う'
       parameters: []
       requestBody:
         required: true
@@ -93,6 +117,7 @@ paths:
     patch:
       operationId: IssueController_updateIssueProgressionStatus
       summary: 課題の進捗ステータスを参加者ごとに更新
+      description: '- 参加者ごとの課題の進捗ステータスの更新を行う'
       parameters: []
       requestBody:
         required: true
@@ -141,6 +166,7 @@ components:
       type: object
       properties:
         participants:
+          description: 参加者の一覧（1回で最大10人の情報を取得）
           type: array
           items:
             $ref: '#/components/schemas/Participants'
