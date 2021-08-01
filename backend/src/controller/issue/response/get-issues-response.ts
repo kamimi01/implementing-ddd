@@ -1,4 +1,4 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class Issues {
   @ApiProperty()
@@ -6,4 +6,7 @@ export class Issues {
 
   @ApiProperty()
   name: string;
+
+  @ApiProperty()
+  progressionStatus: string;
 }

@@ -173,9 +173,12 @@ components:
           type: string
         name:
           type: string
+        progressionStatus:
+          type: string
       required:
         - id
         - name
+        - progressionStatus
     PatchIssueProgressionStatusRequest:
       type: object
       properties:
