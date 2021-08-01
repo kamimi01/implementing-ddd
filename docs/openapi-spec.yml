@@ -3,10 +3,11 @@ paths:
   /participants:
     get:
       operationId: ParticipantController_getParticipants
+      summary: 参加者の一覧の取得または条件付き取得
       parameters: []
       responses:
         '200':
-          description: ''
+          description: 取得成功
           content:
             application/json:
               schema:
@@ -15,6 +16,7 @@ paths:
         - 参加者
     post:
       operationId: ParticipantController_createParticipants
+      summary: 参加者の新規追加
       parameters: []
       requestBody:
         required: true
@@ -24,11 +26,16 @@ paths:
               $ref: '#/components/schemas/PostParticipantsRequest'
       responses:
         '201':
-          description: ''
+          description: 登録成功のため、登録された参加者の情報を返却する
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participants'
       tags: *ref_0
   /participants/{participant_id}/registration-status:
     patch:
       operationId: ParticipantController_updateParticipantRegistrationStatus
+      summary: 参加者ごとの在籍ステータスの更新
       parameters: []
       requestBody:
         required: true
@@ -38,7 +45,11 @@ paths:
               $ref: '#/components/schemas/PatchParticipantRegistrationStatusRequest'
       responses:
         '200':
-          description: ''
+          description: 更新成功のため、更新された参加者の情報を返却する
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participants'
       tags: *ref_0
   /teams:
     get:
@@ -61,6 +72,7 @@ paths:
   /issues:
     post:
       operationId: IssueController_createIssues
+      summary: 課題の新規追加
       parameters: []
       requestBody:
         required: true
@@ -70,12 +82,17 @@ paths:
               $ref: '#/components/schemas/PostIssuesRequest'
       responses:
         '201':
-          description: ''
+          description: 登録成功のため、登録された課題の情報を返却する
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issues'
       tags: &ref_1
         - 課題
   /issues/{issue_id}/participants/{participant_id}/progression-status:
     patch:
       operationId: IssueController_updateIssueProgressionStatus
+      summary: 課題の進捗ステータスを参加者ごとに更新
       parameters: []
       requestBody:
         required: true
@@ -85,7 +102,11 @@ paths:
               $ref: '#/components/schemas/PatchIssueProgressionStatusRequest'
       responses:
         '200':
-          description: ''
+          description: 更新成功のため、更新された課題の情報を返却する
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issues'
       tags: *ref_1
 info:
   title: Praha ChallengeをDDDで実装する
@@ -144,6 +165,16 @@ components:
         name:
           type: string
       required:
+        - name
+    Issues:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
         - name
     PatchIssueProgressionStatusRequest:
       type: object

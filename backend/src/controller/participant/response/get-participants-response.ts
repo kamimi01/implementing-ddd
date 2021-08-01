@@ -8,7 +8,7 @@ export class GetParticipantsResponse {
   public constructor() {}
 }
 
-class Participants {
+export class Participants {
   @ApiProperty()
   id: string;
 
@@ -21,16 +21,4 @@ class Participants {
   @ApiProperty()
   // TODO: データ型はUnionで定義した型に変更する
   registrationStatus: string;
-
-  public constructor(params: {
-    id: string;
-    name: string;
-    email: string;
-    registrationStatus: string;
-  }) {
-    this.id = params.id;
-    this.name = params.name;
-    this.email = params.email;
-    this.registrationStatus = params.registrationStatus;
-  }
 }
