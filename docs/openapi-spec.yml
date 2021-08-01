@@ -136,12 +136,12 @@ paths:
       tags: *ref_1
 info:
   title: Praha ChallengeをDDDで実装する
-  description: Praha ChallengeをDDDで実装する
+  description: '- Praha ChallengeをDDDで実装する'
   version: '1.0'
   contact: {}
 tags: []
 servers:
-  - url: http://localhost
+  - url: http://localhost/api/v1
 components:
   schemas:
     Participants:

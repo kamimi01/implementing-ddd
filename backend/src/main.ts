@@ -11,10 +11,9 @@ async function bootstrap() {
 
   const options = new DocumentBuilder()
     .setTitle('Praha ChallengeをDDDで実装する')
-    .setDescription('Praha ChallengeをDDDで実装する')
+    .setDescription('- Praha ChallengeをDDDで実装する')
     .setVersion('1.0')
-    .addServer('http://localhost')
-    .setBasePath('/api/v1')
+    .addServer('http://localhost/api/v1')
     .build();
   const document = SwaggerModule.createDocument(app, options);
 
