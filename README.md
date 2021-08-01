@@ -27,4 +27,4 @@ nest new backend
 ```
 
 - `docker-compose.yml`を作成
-  - そのyamlがあるディレクトリをVSCodeのRemote Container拡張機能で開く# implementing-ddd
+  - そのyamlがあるディレクトリをVSCodeのRemote Container拡張機能で開く
