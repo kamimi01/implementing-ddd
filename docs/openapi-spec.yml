@@ -1,6 +1,6 @@
 openapi: 3.0.0
 paths:
-  /participants:
+  /api/v1/participants:
     get:
       operationId: ParticipantController_getParticipants
       summary: 参加者の一覧の取得または条件付き取得
@@ -60,7 +60,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Participants'
       tags: *ref_0
-  /participants/{participantId}/registration-status:
+  /api/v1/participants/{participantId}/registration-status:
     patch:
       operationId: ParticipantController_updateParticipantRegistrationStatus
       summary: 参加者ごとの在籍ステータスの更新
@@ -88,7 +88,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Participants'
       tags: *ref_0
-  /teams:
+  /api/v1/teams:
     get:
       operationId: TeamController_getTeams
       summary: チームの一覧の取得
@@ -103,7 +103,7 @@ paths:
                 $ref: '#/components/schemas/GetTeamsResponse'
       tags: &ref_1
         - チーム
-  /teams/{teamId}/add:
+  /api/v1/teams/{teamId}/add:
     patch:
       operationId: TeamController_addPairs
       summary: チームに所属するペアの追加
@@ -131,7 +131,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Teams'
       tags: *ref_1
-  /teams/{teamId}/delete:
+  /api/v1/teams/{teamId}/delete:
     patch:
       operationId: TeamController_deletePairs
       summary: チームに所属するペアの削除
@@ -159,7 +159,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Teams'
       tags: *ref_1
-  /pairs:
+  /api/v1/pairs:
     get:
       operationId: PairController_getPairs
       summary: ペアの一覧の取得
@@ -174,7 +174,7 @@ paths:
                 $ref: '#/components/schemas/GetPairsResponse'
       tags: &ref_2
         - ペア
-  /pairs/{pairId}/add:
+  /api/v1/pairs/{pairId}/add:
     patch:
       operationId: PairController_addPairs
       summary: ペアに所属する参加者の追加
@@ -202,7 +202,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Pairs'
       tags: *ref_2
-  /pairs/{pairId}/delete:
+  /api/v1/pairs/{pairId}/delete:
     patch:
       operationId: PairController_deletePairs
       summary: ペアに所属する参加者の削除
@@ -230,7 +230,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Pairs'
       tags: *ref_2
-  /issues:
+  /api/v1/issues:
     post:
       operationId: IssueController_createIssues
       summary: 課題の新規追加
@@ -251,7 +251,7 @@ paths:
                 $ref: '#/components/schemas/Issues'
       tags: &ref_3
         - 課題
-  /issues/{issueId}/participants/{participantId}/progression-status:
+  /api/v1/issues/{issueId}/participants/{participantId}/progression-status:
     patch:
       operationId: IssueController_updateIssueProgressionStatus
       summary: 課題の進捗ステータスを参加者ごとに更新

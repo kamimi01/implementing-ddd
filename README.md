@@ -28,3 +28,17 @@ nest new backend
 
 - `docker-compose.yml`を作成
   - そのyamlがあるディレクトリをVSCodeのRemote Container拡張機能で開く
+
+## 実装
+
+### 値オブジェクトの実装
+
+- 値オブジェクトを不変にするには
+  - インスタンス変数はコンストラクタでオブジェクトの生成時に設定する
+  - インスタンス変数を変更するメソッド（setterメソッド）を作らない
+  - 別の値が必要であれば、別のインスタンスを作る
+
+#### 参考
+
+- [TypeScriptで値オブジェクトを表現する](https://blog.mamansoft.net/2020/02/19/express-value-object-by-typescript/#%E5%80%A4%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%A8%E3%81%AF)
+- [shallow-equal for Object/React props](https://efcl.info/2017/11/30/shallow-equal/)
