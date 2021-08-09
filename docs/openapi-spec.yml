@@ -90,22 +90,146 @@ paths:
       tags: *ref_0
   /teams:
     get:
-      operationId: TeamController_getPairs
+      operationId: TeamController_getTeams
+      summary: チームの一覧の取得
+      description: '- チームの一覧を取得する'
       parameters: []
       responses:
         '200':
-          description: ''
-      tags:
+          description: 取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTeamsResponse'
+      tags: &ref_1
         - チーム
+  /teams/{teamId}/add:
+    patch:
+      operationId: TeamController_addPairs
+      summary: チームに所属するペアの追加
+      description: '- チームにペアを追加する'
+      parameters:
+        - name: teamId
+          required: true
+          in: path
+          description: チームを識別するための一意のID
+          example: 8c7fd5c4-5bca-47ac-b15e-70b747d56611
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchTeamRequest'
+      responses:
+        '200':
+          description: 追加成功したため、追加後のチームの情報を返却する
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Teams'
+      tags: *ref_1
+  /teams/{teamId}/delete:
+    patch:
+      operationId: TeamController_deletePairs
+      summary: チームに所属するペアの削除
+      description: '- チームにペアを削除する'
+      parameters:
+        - name: teamId
+          required: true
+          in: path
+          description: チームを識別するための一意のID
+          example: 8c7fd5c4-5bca-47ac-b15e-70b747d56611
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchTeamRequest'
+      responses:
+        '200':
+          description: 削除成功したため、削除後のチームの情報を返却する
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Teams'
+      tags: *ref_1
   /pairs:
     get:
       operationId: PairController_getPairs
+      summary: ペアの一覧の取得
+      description: '- ペアの一覧を取得する'
       parameters: []
       responses:
         '200':
-          description: ''
-      tags:
+          description: 取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPairsResponse'
+      tags: &ref_2
         - ペア
+  /pairs/{pairId}/add:
+    patch:
+      operationId: PairController_addPairs
+      summary: ペアに所属する参加者の追加
+      description: '- ペアに参加者を追加する'
+      parameters:
+        - name: pairId
+          required: true
+          in: path
+          description: ペアを識別するための一意のID
+          example: 8c7fd5c4-5bca-47ac-b15e-70b747d56611
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchPairRequest'
+      responses:
+        '200':
+          description: 追加成功したため、追加後のペアの情報を返却する
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pairs'
+      tags: *ref_2
+  /pairs/{pairId}/delete:
+    patch:
+      operationId: PairController_deletePairs
+      summary: ペアに所属する参加者の削除
+      description: '- ペアに参加者を削除する'
+      parameters:
+        - name: pairId
+          required: true
+          in: path
+          description: ペアを識別するための一意のID
+          example: 8c7fd5c4-5bca-47ac-b15e-70b747d56611
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchPairRequest'
+      responses:
+        '200':
+          description: 削除成功したため、削除後のペアの情報を返却する
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pairs'
+      tags: *ref_2
   /issues:
     post:
       operationId: IssueController_createIssues
@@ -125,7 +249,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Issues'
-      tags: &ref_1
+      tags: &ref_3
         - 課題
   /issues/{issueId}/participants/{participantId}/progression-status:
     patch:
@@ -162,7 +286,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Issues'
-      tags: *ref_1
+      tags: *ref_3
 info:
   title: Praha ChallengeをDDDで実装する
   description: '- Praha ChallengeをDDDで実装する'
@@ -248,6 +372,108 @@ components:
           $ref: '#/components/schemas/RegistrationStatus'
       required:
         - registrationStatus
+    Teams:
+      type: object
+      properties:
+        id:
+          type: string
+          description: チームを識別するための唯一のID
+          format: uuid
+          example: ae6b59c0-abff-4993-b2f5-76ba28e74c58
+        name:
+          type: number
+          description: チームの名前
+          minimum: 1
+          maximum: 999
+          example: '1'
+        pairs:
+          description: 所属ペアのID
+          maxItems: 1
+          example:
+            - 2e8655d7-34d4-4e04-a2b9-fd7310177a39
+            - 8c7fd5c4-5bca-47ac-b15e-70b747d56611
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - name
+        - pairs
+    GetTeamsResponse:
+      type: object
+      properties:
+        teams:
+          description: チームの一覧
+          type: array
+          items:
+            $ref: '#/components/schemas/Teams'
+      required:
+        - teams
+    PatchTeamRequest:
+      type: object
+      properties:
+        teamId:
+          description: チームを識別するための一意なID
+          minItems: 1
+          example:
+            - 2e8655d7-34d4-4e04-a2b9-fd7310177a39
+            - 8c7fd5c4-5bca-47ac-b15e-70b747d56611
+          type: array
+          items:
+            type: string
+      required:
+        - teamId
+    Pairs:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ペアを識別するための唯一のID
+          format: uuid
+          example: ae6b59c0-abff-4993-b2f5-76ba28e74c58
+        name:
+          type: string
+          description: ペアの名前
+          minLength: 1
+          example: 1c
+        participants:
+          description: 所属参加者のID
+          maxItems: 2
+          minItems: 3
+          example:
+            - 2e8655d7-34d4-4e04-a2b9-fd7310177a39
+            - 8c7fd5c4-5bca-47ac-b15e-70b747d56611
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - name
+        - participants
+    GetPairsResponse:
+      type: object
+      properties:
+        teams:
+          description: ペアの一覧
+          type: array
+          items:
+            $ref: '#/components/schemas/Pairs'
+      required:
+        - teams
+    PatchPairRequest:
+      type: object
+      properties:
+        pairId:
+          description: ペアを識別するための一意なID
+          minItems: 1
+          example:
+            - 2e8655d7-34d4-4e04-a2b9-fd7310177a39
+            - 8c7fd5c4-5bca-47ac-b15e-70b747d56611
+          type: array
+          items:
+            type: string
+      required:
+        - pairId
     PostIssuesRequest:
       type: object
       properties:

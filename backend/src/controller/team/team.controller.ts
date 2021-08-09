@@ -1,6 +1,9 @@
-import { Controller, Get, Patch, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AppService } from '../../app.service';
+import { PatchTeamRequest } from './request/patch-team-request';
+import { PatchTeamRequestPath } from './request/patch-team-request-path';
+import { GetTeamsResponse, Teams } from './response/get-teams-response';
 
 @ApiTags('チーム')
 @Controller('teams')
@@ -9,27 +12,64 @@ export class TeamController {
 
   // チームの一覧取得
   @Get()
-  getTeams(): string {
+  @ApiOperation({
+    summary: 'チームの一覧の取得',
+    description: '- チームの一覧を取得する',
+  })
+  @ApiResponse({
+    status: 200,
+    description: '取得成功',
+    type: GetTeamsResponse,
+  })
+  getTeams(): GetTeamsResponse {
     // 条件の指定がない場合は、一覧を取得する
+    const response = new GetTeamsResponse();
 
-    // 条件指定がある場合は、条件に従い取得する
-    return '';
+    return response;
   }
 
-  // TODO: チームの更新
+  // チームに所属するペアの追加
+  @Patch('/:teamId/add')
+  @ApiOperation({
+    summary: 'チームに所属するペアの追加',
+    description: '- チームにペアを追加する',
+  })
+  @ApiResponse({
+    status: 200,
+    description: '追加成功したため、追加後のチームの情報を返却する',
+    type: Teams,
+  })
+  addPairs(
+    @Param()
+    patchTeamRequestPath: PatchTeamRequestPath,
+    // ステータスしか更新しないのに、Dtoクラスを作成するのはoverkillか？
+    @Body()
+    patchTeamDto: PatchTeamRequest,
+  ): Teams {
+    const response = new Teams();
 
-  // ペアの一覧取得
-  @Get()
-  getPairs(): string {
-    // 条件の指定がない場合は、一覧を取得する
-
-    // 条件指定がある場合は、条件に従い取得する
-    return '';
+    return response;
   }
 
-  // TODO: ペアの更新
+  // チームに所属するペアの削除
+  @Patch('/:teamId/delete')
+  @ApiOperation({
+    summary: 'チームに所属するペアの削除',
+    description: '- チームにペアを削除する',
+  })
+  @ApiResponse({
+    status: 200,
+    description: '削除成功したため、削除後のチームの情報を返却する',
+    type: Teams,
+  })
+  deletePairs(
+    @Param()
+    patchTeamRequestPath: PatchTeamRequestPath,
+    @Body()
+    patchTeamDto: PatchTeamRequest,
+  ): Teams {
+    const response = new Teams();
 
-  // 課題の新規追加
-
-  // 課題の更新
+    return response;
+  }
 }

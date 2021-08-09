@@ -23,7 +23,8 @@
     "prisma.prisma",
     "humao.rest-client",
     "rangav.vscode-thunder-client",
-    "redhat.vscode-yaml"
+    "redhat.vscode-yaml",
+    "arjun.swagger-viewer"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.

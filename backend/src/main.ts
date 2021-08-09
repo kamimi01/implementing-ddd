@@ -19,7 +19,7 @@ async function bootstrap() {
 
   // TODO: OpenAPIのyamlファイル出力はyarn start:dev以外のコマンドで実行できるようにしたい
   fs.writeFileSync(
-    '/workspaces/Node_Projects/implementing-domain-driven-design/docs/openapi-spec.yml',
+    '/workspaces/implementing-domain-driven-design/docs/openapi-spec.yml',
     dump(document, {}),
   );
 
