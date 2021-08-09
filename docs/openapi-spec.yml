@@ -412,8 +412,8 @@ components:
     PatchTeamRequest:
       type: object
       properties:
-        teamId:
-          description: チームを識別するための一意なID
+        pairId:
+          description: ペアを識別するための一意なID
           minItems: 1
           example:
             - 2e8655d7-34d4-4e04-a2b9-fd7310177a39
@@ -422,7 +422,7 @@ components:
           items:
             type: string
       required:
-        - teamId
+        - pairId
     Pairs:
       type: object
       properties:
@@ -463,8 +463,8 @@ components:
     PatchPairRequest:
       type: object
       properties:
-        pairId:
-          description: ペアを識別するための一意なID
+        participantId:
+          description: 参加者を識別するための一意なID
           minItems: 1
           example:
             - 2e8655d7-34d4-4e04-a2b9-fd7310177a39
@@ -473,7 +473,7 @@ components:
           items:
             type: string
       required:
-        - pairId
+        - participantId
     PostIssuesRequest:
       type: object
       properties:

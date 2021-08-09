@@ -5,7 +5,7 @@ import { IsNotEmpty, IsString } from 'class-validator';
 
 export class PatchPairRequest {
   @ApiProperty({
-    description: 'ペアを識別するための一意なID',
+    description: '参加者を識別するための一意なID',
     minItems: 1,
     example: [
       '2e8655d7-34d4-4e04-a2b9-fd7310177a39',
@@ -14,5 +14,5 @@ export class PatchPairRequest {
   })
   @IsNotEmpty()
   @IsString()
-  pairId: string[];
+  participantId: string[];
 }

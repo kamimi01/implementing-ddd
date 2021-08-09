@@ -5,7 +5,7 @@ import { IsNotEmpty, IsString } from 'class-validator';
 
 export class PatchTeamRequest {
   @ApiProperty({
-    description: 'チームを識別するための一意なID',
+    description: 'ペアを識別するための一意なID',
     minItems: 1,
     example: [
       '2e8655d7-34d4-4e04-a2b9-fd7310177a39',
@@ -14,5 +14,5 @@ export class PatchTeamRequest {
   })
   @IsNotEmpty()
   @IsString()
-  teamId: string[];
+  pairId: string[];
 }
