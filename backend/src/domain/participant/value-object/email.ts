@@ -1,6 +1,6 @@
 import { AbstractValueObject } from 'src/domain/shared/abstract-value-object';
 
-interface EmailProps {
+export interface EmailProps {
   email: string;
 }
 
@@ -28,6 +28,7 @@ export class Email extends AbstractValueObject<EmailProps> {
     return true;
   }
 
+  // 取得用メソッドは作成するが、変更用のメソッドは外部に公開しないことでバリューオブジェクトの不変性の特徴を実装する
   get email(): string {
     return this._value.email;
   }
