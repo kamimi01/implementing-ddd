@@ -22,6 +22,22 @@ describe('Emailバリューオブジェクトの単体テスト', () => {
 
     // Act
     // Assert
-    expect(() => new Email(email)).toThrowError(new Error('Emailアドレスの形式が誤っています'));
+    expect(() => new Email(email)).toThrowError(
+      new Error('Emailアドレスの形式が誤っています'),
+    );
+  });
+
+  test('Emailアドレスの取得チェック', () => {
+    // Arrange
+    const emailProps: EmailProps = {
+      email: 'hoge@email.com',
+    };
+    const emailObject = new Email(emailProps);
+
+    // Act
+    const email = emailObject.email;
+
+    // Assert
+    expect(email).toEqual('hoge@email.com');
   });
 });
