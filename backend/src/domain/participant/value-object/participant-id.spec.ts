@@ -1,4 +1,4 @@
-import { ParticipantId, ParticipantIdProps } from './participant-id';
+import { ParticipantId } from './participant-id';
 
 describe('参加者IDのバリューオブジェクトの単体テスト', () => {
   test('参加者IDバリューオブジェクトの等価性チェック', () => {

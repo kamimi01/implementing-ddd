@@ -1,20 +1,13 @@
-import { AbstractValueObject } from 'src/domain/shared/abstract-value-object';
-import { ParticipantNameProps } from './participant-name';
+import { Entity } from 'src/domain/shared/Entity';
+import { UniqueEntityID } from 'src/domain/shared/UniqueEntityID';
 
-export interface ParticipantIdProps {
-  id: string;
-}
+export class ParticipantId extends Entity<any> {
 
-export class ParticipantId extends AbstractValueObject<ParticipantIdProps> {
-  private readonly props: ParticipantIdProps;
-
-  constructor(props: ParticipantIdProps) {
-    super(props);
-
-    this.props = props;
+  constructor(id?: UniqueEntityID) {
+    super(null, id);
   }
 
   get id(): string {
-    return this._value.id;
+    return this.id;
   }
 }
