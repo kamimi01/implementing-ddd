@@ -6,8 +6,8 @@ describe('参加者名のバリューオブジェクトの単体テスト', () =
     const participantName: ParticipantNameProps = {
       name: '佐藤 花子',
     };
-    const participantNameObject1 = new ParticipantName(participantName);
-    const participantNameObject2 = new ParticipantName(participantName);
+    const participantNameObject1 = ParticipantName.create(participantName);
+    const participantNameObject2 = ParticipantName.create(participantName);
 
     // Act
     // Assert
@@ -19,7 +19,7 @@ describe('参加者名のバリューオブジェクトの単体テスト', () =
     const participantNameProps: ParticipantNameProps = {
       name: '佐藤 花子',
     };
-    const participantNameObject1 = new ParticipantName(participantNameProps);
+    const participantNameObject1 = ParticipantName.create(participantNameProps);
 
     // Act
     const participantName = participantNameObject1.name;

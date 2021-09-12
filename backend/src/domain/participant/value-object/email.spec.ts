@@ -6,8 +6,8 @@ describe('Emailバリューオブジェクトの単体テスト', () => {
     const email: EmailProps = {
       email: 'hoge@email.com',
     };
-    const emailObject1 = new Email(email);
-    const emailObject2 = new Email(email);
+    const emailObject1 = Email.create(email);
+    const emailObject2 = Email.create(email);
 
     // Act
     // Assert
@@ -22,7 +22,7 @@ describe('Emailバリューオブジェクトの単体テスト', () => {
 
     // Act
     // Assert
-    expect(() => new Email(email)).toThrowError(
+    expect(() => Email.create(email)).toThrowError(
       new Error('Emailアドレスの形式が誤っています'),
     );
   });
@@ -32,7 +32,7 @@ describe('Emailバリューオブジェクトの単体テスト', () => {
     const emailProps: EmailProps = {
       email: 'hoge@email.com',
     };
-    const emailObject = new Email(emailProps);
+    const emailObject = Email.create(emailProps);
 
     // Act
     const email = emailObject.email;

@@ -3,8 +3,12 @@ import { UniqueEntityID } from 'src/domain/shared/UniqueEntityID';
 
 export class ParticipantId extends Entity<any> {
 
-  constructor(id?: UniqueEntityID) {
+  private constructor(id?: UniqueEntityID) {
     super(null, id);
+  }
+
+  public static create(id?: UniqueEntityID): ParticipantId {
+    return new ParticipantId(id)
   }
 
   get id(): string {
