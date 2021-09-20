@@ -4,10 +4,9 @@ import { ParticipantId } from '../value-object/participant-id';
 import { ParticipantName } from '../value-object/participant-name';
 import { RegistrationStatus } from '../value-object/registration-status';
 
-interface ParticipantProps {
+export interface ParticipantProps {
   email: Email;
   name: ParticipantName;
-  registrationStatus: RegistrationStatus;
 }
 
 export class Participant {
@@ -23,6 +22,12 @@ export class Participant {
     this._registrationStatus = RegistrationStatus.Enroll;
   }
 
+  /**
+   * 参加者エンティティのインスタンス生成
+   * @param props 
+   * @param id 
+   * @returns Participant
+   */
   public static create(
     props: ParticipantProps,
     id?: UniqueEntityID,

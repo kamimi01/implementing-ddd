@@ -1,30 +1,21 @@
+import { UniqueEntityID } from 'src/domain/shared/UniqueEntityID';
 import { ParticipantId } from './participant-id';
 
 describe('参加者IDのバリューオブジェクトの単体テスト', () => {
-  test('参加者IDバリューオブジェクトの等価性チェック', () => {
+  test('新規参加者のID生成', () => {
     // Arrange
-    const participantId: ParticipantIdProps = {
-      id: '1',
-    };
-    const participantIdObject1 = new ParticipantId(participantId);
-    const participantIdObject2 = new ParticipantId(participantId);
+    const participantId = ParticipantId.create();
 
     // Act
     // Assert
-    expect(participantIdObject1.equals(participantIdObject2)).toBeTruthy;
   });
 
   test('参加者IDの取得チェック', () => {
     // Arrange
-    const participantIdProps: ParticipantIdProps = {
-      id: '1',
-    };
-    const participantIdObject1 = new ParticipantId(participantIdProps);
+    const id = new UniqueEntityID();
+    const participantId = ParticipantId.create(id);
 
     // Act
-    const participantId = participantIdObject1.id
-
     // Assert
-    expect(participantId).toEqual('1');
   });
 });
