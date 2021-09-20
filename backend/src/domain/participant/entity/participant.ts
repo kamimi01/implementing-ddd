@@ -1,3 +1,4 @@
+import { AggregateRoot } from 'src/domain/shared/aggregate-root';
 import { UniqueEntityID } from 'src/domain/shared/UniqueEntityID';
 import { Email } from '../value-object/email';
 import { ParticipantId } from '../value-object/participant-id';
@@ -9,13 +10,14 @@ export interface ParticipantProps {
   name: ParticipantName;
 }
 
-export class Participant {
+export class Participant extends AggregateRoot<ParticipantProps> {
   private readonly _participantId: ParticipantId;
   private readonly _email: Email;
   private readonly _name: ParticipantName;
   private readonly _registrationStatus: RegistrationStatus;
 
   private constructor(props: ParticipantProps, id?: UniqueEntityID) {
+    super(props, id);
     this._participantId = ParticipantId.create();
     this._email = props.email;
     this._name = props.name;
@@ -24,8 +26,8 @@ export class Participant {
 
   /**
    * 参加者エンティティのインスタンス生成
-   * @param props 
-   * @param id 
+   * @param props
+   * @param id
    * @returns Participant
    */
   public static create(
