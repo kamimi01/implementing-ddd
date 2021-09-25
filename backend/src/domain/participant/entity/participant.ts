@@ -1,4 +1,4 @@
-import { AggregateRoot } from 'src/domain/shared/aggregate-root';
+import { Entity } from 'src/domain/shared/Entity';
 import { UniqueEntityID } from 'src/domain/shared/UniqueEntityID';
 import { Email } from '../value-object/email';
 import { ParticipantId } from '../value-object/participant-id';
@@ -8,20 +8,19 @@ import { RegistrationStatus } from '../value-object/registration-status';
 export interface ParticipantProps {
   email: Email;
   name: ParticipantName;
+  registationStatus: RegistrationStatus;
 }
 
-export class Participant extends AggregateRoot<ParticipantProps> {
-  private readonly _participantId: ParticipantId;
+export class Participant extends Entity<ParticipantProps> {
   private readonly _email: Email;
   private readonly _name: ParticipantName;
-  private readonly _registrationStatus: RegistrationStatus;
+  private readonly _registationStatus: RegistrationStatus;
 
   private constructor(props: ParticipantProps, id?: UniqueEntityID) {
     super(props, id);
-    this._participantId = ParticipantId.create();
     this._email = props.email;
     this._name = props.name;
-    this._registrationStatus = RegistrationStatus.Enroll;
+    this._registationStatus = RegistrationStatus.Enroll;
   }
 
   /**
@@ -46,8 +45,9 @@ export class Participant extends AggregateRoot<ParticipantProps> {
     return participant;
   }
 
+  // IDはUUIDを使用して、早期生成する
   get participantId(): ParticipantId {
-    return this._participantId;
+    return ParticipantId.create(this._id);
   }
 
   get email(): Email {
@@ -59,6 +59,6 @@ export class Participant extends AggregateRoot<ParticipantProps> {
   }
 
   get registrationStatus(): RegistrationStatus {
-    return this._registrationStatus;
+    return this._registationStatus;
   }
 }
