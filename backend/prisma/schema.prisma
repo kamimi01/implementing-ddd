@@ -11,7 +11,7 @@ generator client {
 }
 
 model Participant {
-  participantId Int @id
+  participantId String @id
   name String
   email String
   registrationStatus RegistrationStatus @relation(fields: [registrationStatusId], references: [registrationStatusId])

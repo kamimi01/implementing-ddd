@@ -32,9 +32,12 @@ nest new backend
 - prismaのデータベースにテーブルを作成
   `dotenv -e .env.test -- npx prisma migrate dev --name init`
 
-- prismaデータベースの中身を見る
+- prismaデータベースに入る
   `docker-compose exec prisma-db /bin/bash`
   `psql -U root prisma`
+
+- postgresqlのテーブル内データを参照する
+  `select * from "Participant";`
 
 ## 実装
 
