@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Participant {
+  participantId Int @id
+  name String
+  email String
+  registrationStatus RegistrationStatus @relation(fields: [registrationStatusId], references: [registrationStatusId])
+  registrationStatusId Int
+}
+
+model RegistrationStatus {
+  registrationStatusId Int @default(autoincrement()) @id
+  registationStatus String
+  participants Participant[]
+}

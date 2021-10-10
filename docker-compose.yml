@@ -1,5 +1,13 @@
 version: "3.7"
 services:
+  nest-app:
+    container_name: nest_app
+    build:
+      context: .devcontainer/
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/home/node
   prisma-db:
     container_name: prisma-db
     image: postgres:12

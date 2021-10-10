@@ -29,6 +29,13 @@ nest new backend
 - `docker-compose.yml`を作成
   - そのyamlがあるディレクトリをVSCodeのRemote Container拡張機能で開く
 
+- prismaのデータベースにテーブルを作成
+  `dotenv -e .env.test -- npx prisma migrate dev --name init`
+
+- prismaデータベースの中身を見る
+  `docker-compose exec prisma-db /bin/bash`
+  `psql -U root prisma`
+
 ## 実装
 
 ### 値オブジェクトの実装
