@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Participant" (
-    "participantId" INTEGER NOT NULL,
+    "participantId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "registrationStatusId" INTEGER NOT NULL,

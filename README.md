@@ -36,8 +36,18 @@ nest new backend
   `docker-compose exec prisma-db /bin/bash`
   `psql -U root prisma`
 
+- prismaデータベースにデータを投入する
+  `npx prisma db seed`
+
 - postgresqlのテーブル内データを参照する
   `select * from "Participant";`
+
+- prismaをdockerで構築する
+[Integration testing](https://www.prisma.io/docs/guides/testing/integration-testing)
+
+- PosgreSQLで、任意の値からautoincrementを行う
+  - 現状は、schema.prismaから設定は不可能なため、`--create-only`のオプションを使ってSQLの作成のみを行い、その後にSQLファイルを直接編集し、migrateを実行する
+[Auto-incrementing from custom value in prisma + postgresql](https://stackoverflow.com/questions/69023136/auto-incrementing-from-custom-value-in-prisma-postgresql)
 
 ## 実装
 
@@ -52,3 +62,4 @@ nest new backend
 
 - [TypeScriptで値オブジェクトを表現する](https://blog.mamansoft.net/2020/02/19/express-value-object-by-typescript/#%E5%80%A4%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%A8%E3%81%AF)
 - [shallow-equal for Object/React props](https://efcl.info/2017/11/30/shallow-equal/)
+- [How to write tests for Prisma with Docker and Jest](https://dev.to/eddeee888/how-to-write-tests-for-prisma-with-docker-and-jest-593i)

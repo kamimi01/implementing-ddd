@@ -6,9 +6,11 @@ import {
 import { Email, EmailProps } from "src/domain/participant/value-object/email";
 import { ParticipantName, ParticipantNameProps } from "src/domain/participant/value-object/participant-name";
 import { RegistrationStatus } from "src/domain/participant/value-object/registration-status";
+import { UniqueEntityID } from "src/domain/shared/UniqueEntityID";
 
 export class ParticipantMap {
   public static toDomain(participant: ParticipantForPrisma): Participant {
+    const participantId: UniqueEntityID = new UniqueEntityID(participant.participantId);
     const email: EmailProps = {
       email: participant.email,
     };
@@ -30,7 +32,7 @@ export class ParticipantMap {
       name: ParticipantName.create(name),
       registationStatus: registatrationStatus
     }
-    const participantEntity = Participant.create(participantProps);
+    const participantEntity = Participant.create(participantProps, participantId);
     return participantEntity
   }
 }

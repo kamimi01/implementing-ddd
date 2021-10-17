@@ -35,16 +35,16 @@ describe('参加者エンティティの単体テスト', () => {
     );
   });
 
-  test('既存参加者エンティティ', () => {
-    // Arrange
-    const id = new UniqueEntityID();
+  // test('既存参加者エンティティ', () => {
+  //   // Arrange
+  //   const id = new UniqueEntityID();
 
-    // Act
-    // Assert
-    expect(() => Participant.create(participantProps, id)).toThrowError(
-      '既に存在している参加者です',
-    );
-  });
+  //   // Act
+  //   // Assert
+  //   expect(() => Participant.create(participantProps, id)).toThrowError(
+  //     '既に存在している参加者です',
+  //   );
+  // });
 
   test('IDによる等価チェック：IDが異なる場合', () => {
     // Arrange
