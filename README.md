@@ -29,6 +29,17 @@ nest new backend
 - `docker-compose.yml`を作成
   - そのyamlがあるディレクトリをVSCodeのRemote Container拡張機能で開く
 
+## 実装
+
+### 値オブジェクトの実装
+
+- 値オブジェクトを不変にするには
+  - インスタンス変数はコンストラクタでオブジェクトの生成時に設定する
+  - インスタンス変数を変更するメソッド（setterメソッド）を作らない
+  - 別の値が必要であれば、別のインスタンスを作る
+
+## リポジトリ層の実装
+
 - prismaのデータベースにテーブルを作成
   `dotenv -e .env.test -- npx prisma migrate dev --name init`
 
@@ -49,14 +60,10 @@ nest new backend
   - 現状は、schema.prismaから設定は不可能なため、`--create-only`のオプションを使ってSQLの作成のみを行い、その後にSQLファイルを直接編集し、migrateを実行する
 [Auto-incrementing from custom value in prisma + postgresql](https://stackoverflow.com/questions/69023136/auto-incrementing-from-custom-value-in-prisma-postgresql)
 
-## 実装
+## ユースケース層の実装
 
-### 値オブジェクトの実装
-
-- 値オブジェクトを不変にするには
-  - インスタンス変数はコンストラクタでオブジェクトの生成時に設定する
-  - インスタンス変数を変更するメソッド（setterメソッド）を作らない
-  - 別の値が必要であれば、別のインスタンスを作る
+- CQRS
+  - [CQRS実践入門 [ドメイン駆動設計]](https://little-hands.hatenablog.com/entry/2019/12/02/cqrs)
 
 #### 参考
 
