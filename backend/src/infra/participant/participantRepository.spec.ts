@@ -5,10 +5,9 @@ import { ParticipantRepository } from "./participantRepository";
 
 const prisma = new PrismaClient();
 
-afterAll(async (done) => {
+afterAll(async () => {
   // DBの接続を切る
   await prisma.$disconnect;
-  done();
 })
 
 describe('参加者取得に関する単体テスト', () => {

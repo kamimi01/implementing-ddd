@@ -33,13 +33,6 @@ export class Participant extends Entity<ParticipantProps> {
     props: ParticipantProps,
     id?: UniqueEntityID,
   ): Participant {
-    // 新しい参加者かどうかをチェックする
-    // const isNewParticipant = (id == null) === true;
-
-    // if (!isNewParticipant) {
-    //   throw new Error('既に存在している参加者です');
-    // }
-
     const participant = new Participant(props);
 
     return participant;
