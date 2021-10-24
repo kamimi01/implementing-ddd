@@ -8,19 +8,17 @@ import { RegistrationStatus } from '../value-object/registration-status';
 export interface ParticipantProps {
   email: Email;
   name: ParticipantName;
-  registationStatus: RegistrationStatus;
+  registrationStatus: RegistrationStatus;
 }
 
 export class Participant extends Entity<ParticipantProps> {
-  private readonly _email: Email;
-  private readonly _name: ParticipantName;
-  private readonly _registationStatus: RegistrationStatus;
+  public readonly _props: ParticipantProps;
+  public readonly _id: ParticipantId;
 
-  private constructor(props: ParticipantProps, id?: UniqueEntityID) {
+  private constructor(props: ParticipantProps, id?: ParticipantId) {
     super(props, id);
-    this._email = props.email;
-    this._name = props.name;
-    this._registationStatus = RegistrationStatus.Enroll;
+    this._props = props;
+    this._id = id;
   }
 
   /**
@@ -31,27 +29,24 @@ export class Participant extends Entity<ParticipantProps> {
    */
   public static create(
     props: ParticipantProps,
-    id?: UniqueEntityID,
+    id?: ParticipantId
   ): Participant {
-    const participant = new Participant(props);
+    const participantId = ParticipantId.create(id);
+    const participantProps = {
+      email: props.email,
+      name: props.name,
+      registrationStatus: RegistrationStatus.Enroll
+    }
+    const participant = new Participant(participantProps, participantId);
 
     return participant;
   }
 
-  // IDはUUIDを使用して、早期生成する
-  get participantId(): ParticipantId {
-    return ParticipantId.create(this._id);
+  get participantProps(): ParticipantProps {
+    return this._props;
   }
 
-  get email(): Email {
-    return this._email;
-  }
-
-  get name(): ParticipantName {
-    return this._name;
-  }
-
-  get registrationStatus(): RegistrationStatus {
-    return this._registationStatus;
+  get id(): ParticipantId {
+    return this._id;
   }
 }

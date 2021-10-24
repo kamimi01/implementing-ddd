@@ -12,12 +12,12 @@ export abstract class Entity<T> {
   // JavaScriptでは、全てのクラスメンバーはpublicのため、privateなプロパティにはアンダースコアをつける
   // https://stackoverflow.com/questions/40587873/naming-convention-for-class-properties-in-typescript?rq=1
   protected readonly _id: UniqueEntityID;
-  public readonly props: T;
+  protected readonly _props: T;
 
   constructor(props: T, id?: UniqueEntityID) {
     // idが存在しなければ、UniqueEntityIDインスタンスを生成する
     this._id = id ? id : new UniqueEntityID();
-    this.props = props;
+    this._props = props;
   }
 
   public equals(object?: Entity<T>): boolean {

@@ -1,7 +1,7 @@
 import { AbstractValueObject } from 'src/domain/shared/abstract-value-object';
 
 export interface EmailProps {
-  email: string;
+  value: string;
 }
 
 export class Email extends AbstractValueObject<EmailProps> {
@@ -9,6 +9,7 @@ export class Email extends AbstractValueObject<EmailProps> {
 
   private constructor(props: EmailProps) {
     super(props);
+    this.props = props;
   }
 
   public static create(props: EmailProps): Email {
@@ -23,15 +24,14 @@ export class Email extends AbstractValueObject<EmailProps> {
     const reg =
       /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}.[A-Za-z0-9]{1,}$/;
 
-    if (!reg.test(props.email)) {
+    if (!reg.test(props.value)) {
       return false;
     }
 
     return true;
   }
 
-  // 取得用メソッドは作成するが、変更用のメソッドは外部に公開しないことでバリューオブジェクトの不変性の特徴を実装する
-  get email(): string {
-    return this._value.email;
+  get value(): string {
+    return this.props.value;
   }
 }

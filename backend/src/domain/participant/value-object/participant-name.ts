@@ -1,7 +1,7 @@
 import { AbstractValueObject } from 'src/domain/shared/abstract-value-object';
 
 export interface ParticipantNameProps {
-  name: string;
+  value: string;
 }
 
 export class ParticipantName extends AbstractValueObject<ParticipantNameProps> {
@@ -9,7 +9,6 @@ export class ParticipantName extends AbstractValueObject<ParticipantNameProps> {
 
   private constructor(props: ParticipantNameProps) {
     super(props);
-
     this.props = props;
   }
 
@@ -17,7 +16,7 @@ export class ParticipantName extends AbstractValueObject<ParticipantNameProps> {
     return new ParticipantName(props);
   }
 
-  get name(): string {
-    return this._value.name;
+  get value(): string {
+    return this.props.value;
   }
 }
