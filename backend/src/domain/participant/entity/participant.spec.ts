@@ -50,7 +50,7 @@ describe('参加者エンティティの単体テスト', () => {
     // Arrange
     // Act
     const participant = Participant.create(participantProps);
-    const email = participant._props.email;
+    const email = participant.participantProps.email;
 
     // Assert
     expect(email).not.toBeNull();
@@ -61,7 +61,7 @@ describe('参加者エンティティの単体テスト', () => {
     // Arrange
     // Act
     const participant = Participant.create(participantProps);
-    const status = participant._props.registrationStatus;
+    const status = participant.participantProps.registrationStatus;
 
     // Assert
     expect(status).not.toBeNull();

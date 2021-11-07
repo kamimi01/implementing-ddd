@@ -12,13 +12,8 @@ export interface ParticipantProps {
 }
 
 export class Participant extends Entity<ParticipantProps> {
-  public readonly _props: ParticipantProps;
-  public readonly _id: ParticipantId;
-
-  private constructor(props: ParticipantProps, id?: ParticipantId) {
+  private constructor(props: ParticipantProps, id?: UniqueEntityID) {
     super(props, id);
-    this._props = props;
-    this._id = id;
   }
 
   /**
@@ -29,7 +24,7 @@ export class Participant extends Entity<ParticipantProps> {
    */
   public static create(
     props: ParticipantProps,
-    id?: ParticipantId
+    id?: UniqueEntityID
   ): Participant {
     const participantId = ParticipantId.create(id);
     const participantProps = {
@@ -46,7 +41,7 @@ export class Participant extends Entity<ParticipantProps> {
     return this._props;
   }
 
-  get id(): ParticipantId {
+  get idProp(): UniqueEntityID {
     return this._id;
   }
 }
