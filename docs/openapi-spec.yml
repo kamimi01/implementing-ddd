@@ -58,7 +58,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Participants'
+                $ref: '#/components/schemas/ParticipantsDto'
       tags: *ref_0
   /api/v1/participants/{participantId}/registration-status:
     patch:
@@ -86,7 +86,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Participants'
+                $ref: '#/components/schemas/ParticipantsDto'
       tags: *ref_0
   /api/v1/teams:
     get:
@@ -310,7 +310,7 @@ components:
         - enroll
         - recess
         - withdrawal
-    Participants:
+    ParticipantsDto:
       type: object
       properties:
         id:
@@ -331,11 +331,21 @@ components:
           description: 参加者の在籍ステータス（在籍中/休会中/退会済み）
           example: recess
           $ref: '#/components/schemas/RegistrationStatus'
+        teamId:
+          type: string
+          description: 参加者の所属しているチームID
+          example: uuid
+        pairId:
+          type: string
+          description: 参加者の所属しているペアID
+          example: uuid
       required:
         - id
         - name
         - email
         - registrationStatus
+        - teamId
+        - pairId
     GetParticipantsResponse:
       type: object
       properties:
@@ -344,7 +354,7 @@ components:
           maxItems: 10
           type: array
           items:
-            $ref: '#/components/schemas/Participants'
+            $ref: '#/components/schemas/ParticipantsDto'
       required:
         - participants
     PostParticipantsRequest:

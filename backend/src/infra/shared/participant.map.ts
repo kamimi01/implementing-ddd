@@ -8,6 +8,7 @@ import { ParticipantName, ParticipantNameProps } from "src/domain/participant/va
 import { RegistrationStatus } from "src/domain/participant/value-object/registration-status";
 import { UniqueEntityID } from "src/domain/shared/UniqueEntityID";
 import { ParticipantId } from "src/domain/participant/value-object/participant-id";
+import { ParticipantsDto } from "src/usecase/participant/dto/participantDto";
 
 export class ParticipantMap {
   public static toDomain(participant: ParticipantForPrisma): Participant {
@@ -35,5 +36,16 @@ export class ParticipantMap {
     }
     const participantEntity = Participant.create(participantProps, participantId);
     return participantEntity
+  };
+
+  public static toDto(participant: ParticipantForPrisma): ParticipantsDto {
+    return {
+      id: participant.participantId,
+      name: participant.name,
+      email: participant.email,
+      registrationStatus: participant.registrationStatusId,
+      teamId: participant.teamId,
+      pairId: participant.pairId
+    };
   }
 }

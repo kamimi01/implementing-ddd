@@ -14,6 +14,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { ParticipantsDto } from 'src/usecase/participant/dto/participantDto';
 import { AppService } from '../../app.service';
 import { GetParticipantsFilterRequest } from './request/get-participants-filter-request';
 import { PatchParticipantRegistrationStatusRequest } from './request/patch-participant-registration-status-request';
@@ -21,7 +22,6 @@ import { PatchParticipantRegistrationStatusRequestPath } from './request/patch-p
 import { PostParticipantsRequest } from './request/post-participants.request';
 import {
   GetParticipantsResponse,
-  Participants,
 } from './response/get-participants-response';
 
 @ApiTags('参加者')
@@ -61,12 +61,12 @@ export class ParticipantController {
   })
   @ApiCreatedResponse({
     description: '登録成功のため、登録された参加者の情報を返却する',
-    type: Participants,
+    type: ParticipantsDto,
   })
   createParticipants(
     @Body() postParticipantsDto: PostParticipantsRequest,
-  ): Participants {
-    const response = new Participants();
+  ): ParticipantsDto {
+    const response = new ParticipantsDto();
 
     return response;
   }
@@ -80,7 +80,7 @@ export class ParticipantController {
   @ApiOkResponse({
     status: 200,
     description: '更新成功のため、更新された参加者の情報を返却する',
-    type: Participants,
+    type: ParticipantsDto,
   })
   updateParticipantRegistrationStatus(
     @Param()
@@ -88,8 +88,8 @@ export class ParticipantController {
     // ステータスしか更新しないのに、Dtoクラスを作成するのはoverkillか？
     @Body()
     PatchParticipantRegistrationStatusDto: PatchParticipantRegistrationStatusRequest,
-  ): Participants {
-    const response = new Participants();
+  ): ParticipantsDto {
+    const response = new ParticipantsDto();
 
     return response;
   }
